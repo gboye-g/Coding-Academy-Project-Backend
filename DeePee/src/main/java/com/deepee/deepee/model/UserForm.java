@@ -24,7 +24,6 @@ public class UserForm {
 
     private String email;
 
-
     private String mobile;
 
 
@@ -34,7 +33,6 @@ public class UserForm {
 
     public UserForm(User user) {
         this.setId(user.getId());
-        this.setUserName(user.getUserName());
         this.setFirstName(user.getFirstName());
         this.setLastName(user.getLastName());
         this.setEmail(user.getEmail());

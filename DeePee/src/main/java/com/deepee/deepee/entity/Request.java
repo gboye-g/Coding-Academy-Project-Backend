@@ -1,12 +1,13 @@
 package com.deepee.deepee.entity;
 
-import com.deepee.deepee.entity.enums.RequestStatus;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 public class Request extends BaseEntity{
@@ -19,5 +20,5 @@ public class Request extends BaseEntity{
     @JoinColumn(name = "tripId")
     private Trip trip;
 
-    private RequestStatus requestStatus;
+    private BigDecimal price;
 }

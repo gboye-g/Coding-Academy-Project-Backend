@@ -1,38 +1,26 @@
 package com.deepee.deepee.entity;
 
-import com.deepee.deepee.model.UserForm;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-
+import com.deepee.deepee.entity.enums.RoleType;
+import lombok.*;
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "Hosts")
-@PrimaryKeyJoinColumn(name = "id_host")
 public class Host extends User {
 
     @OneToMany(mappedBy = "host")
     private List<Trip> trips;
 
-    public Host() {
-    }
+    private String driverLicense;
 
-    public Host(UserForm userFormDTO, String encryptedPassword, Collection<Role> roles) {
-        super(userFormDTO, encryptedPassword, roles);
-    }
-    @Override
-    public void update(UserForm updateData) {
-        super.update(updateData);
-    }
+    private String plateNumber;
 
-
+    public Host(String firstName, String lastName, String email, String mobile, String DoB, String ISWid, String password, RoleType roleType, String driverLicense, String plateNumber) {
+        super(firstName, lastName, email, mobile, DoB, ISWid, password, roleType);
+        this.driverLicense = driverLicense;
+        this.plateNumber = plateNumber;
+    }
 }
