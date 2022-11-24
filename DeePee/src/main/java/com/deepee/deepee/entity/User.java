@@ -30,6 +30,8 @@ public class User extends BaseEntity {
 
     private String password;
 
+    private String passwordh;
+
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
