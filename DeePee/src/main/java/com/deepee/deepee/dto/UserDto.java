@@ -21,7 +21,7 @@ public class UserDto {
 
     private String doB;
 
-    private String ISWid;
+    private String iswId;
 
     private String password;
 
@@ -29,23 +29,23 @@ public class UserDto {
 
     private String plateNumber;
 
-    public UserDto(String firstName, String lastName, String email, String mobile, String doB, String ISWid, String password) {
+    public UserDto(String firstName, String lastName, String email, String mobile, String doB, String iswId, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobile = mobile;
         this.doB = doB;
-        this.ISWid = ISWid;
+        this.iswId = iswId;
         this.password = password;
     }
 
-    public UserDto(String firstName, String lastName, String email, String mobile, String doB, String ISWid, String password, String driverLicense, String plateNumber) {
+    public UserDto(String firstName, String lastName, String email, String mobile, String doB, String iswId, String password, String driverLicense, String plateNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobile = mobile;
         this.doB = doB;
-        this.ISWid = ISWid;
+        this.iswId = iswId;
         this.password = password;
         this.driverLicense = driverLicense;
         this.plateNumber = plateNumber;

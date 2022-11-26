@@ -27,7 +27,7 @@ public class User extends BaseEntity {
     private String doB;
 
     @Column(name = "ISW_id")
-    private String ISWid;
+    private String iswId;
 
     private String password;
 

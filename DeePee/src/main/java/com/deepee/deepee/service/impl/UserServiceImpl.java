@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 //        }
 
         Customer customer1 = new Customer(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
-                userDto.getMobile(), userDto.getDoB(), userDto.getISWid(), userDto.getPassword(),
+                userDto.getMobile(), userDto.getDoB(), userDto.getIswId(), userDto.getPassword(),
                 RoleType.CUSTOMER);
         return customerRepository.save(customer1);
     }
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Host createHost(UserDto userDto) {
         Host host1 = new Host( userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
-                userDto.getMobile(), userDto.getDoB(), userDto.getISWid(), userDto.getPassword(), RoleType.HOST,
+                userDto.getMobile(), userDto.getDoB(), userDto.getIswId(), userDto.getPassword(), RoleType.HOST,
                 userDto.getDriverLicense(), userDto.getPlateNumber());
         return hostRepository.save(host1);
     }

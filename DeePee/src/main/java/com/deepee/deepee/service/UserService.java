@@ -10,6 +10,8 @@ public interface UserService {
 
     Host createHost (UserDto userDto);
 
+    Object login(UserDto user);
+
 //    String login (LoginRequest request);
 
 //    void createHost(UserDto userDto);
