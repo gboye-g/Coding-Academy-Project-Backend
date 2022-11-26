@@ -18,8 +18,8 @@ public class Host extends User {
 
     private String plateNumber;
 
-    public Host(String firstName, String lastName, String email, String mobile, String DoB, String ISWid, String password, RoleType roleType, String driverLicense, String plateNumber) {
-        super(firstName, lastName, email, mobile, DoB, ISWid, password, roleType);
+    public Host(String firstName, String lastName, String email, String mobile, String doB, String ISWid, String password, RoleType roleType, String driverLicense, String plateNumber) {
+        super(firstName, lastName, email, mobile, doB, ISWid, password, roleType);
         this.driverLicense = driverLicense;
         this.plateNumber = plateNumber;
     }

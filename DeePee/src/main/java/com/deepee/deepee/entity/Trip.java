@@ -2,7 +2,6 @@ package com.deepee.deepee.entity;
 
 import com.deepee.deepee.entity.enums.Locations;
 import com.deepee.deepee.entity.enums.NoOfSeats;
-import com.deepee.deepee.entity.enums.TripStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,11 +14,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "Trips")
-public class Trip extends BaseEntity{
-
-    @OneToOne
-    @JoinColumn(name = "id_canceler")
-    private User canceler;
+public class Trip extends BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "requestId")
@@ -30,11 +25,8 @@ public class Trip extends BaseEntity{
     private Host host;
 
     @UpdateTimestamp
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startTime;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime endTime;
 
     @Enumerated(EnumType.STRING)
     private Locations sourceLocations;
@@ -45,17 +37,10 @@ public class Trip extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private NoOfSeats noOfSeats;
 
-    @Enumerated(EnumType.STRING)
-    private TripStatus tripStatus;
-
-    public Trip(User canceler, Host host, LocalDateTime startTime, LocalDateTime endTime, Locations sourceLocations, Locations destinationLocations, NoOfSeats noOfSeats, TripStatus tripStatus) {
-        this.canceler = canceler;
-        this.host = host;
+    public Trip(LocalDateTime startTime, Locations sourceLocations, Locations destinationLocations, NoOfSeats noOfSeats) {
         this.startTime = startTime;
-        this.endTime = endTime;
         this.sourceLocations = sourceLocations;
         this.destinationLocations = destinationLocations;
         this.noOfSeats = noOfSeats;
-        this.tripStatus = tripStatus;
     }
 }

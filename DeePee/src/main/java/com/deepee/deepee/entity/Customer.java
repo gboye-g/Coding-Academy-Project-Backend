@@ -1,6 +1,8 @@
 package com.deepee.deepee.entity;
 
 import com.deepee.deepee.entity.enums.RoleType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

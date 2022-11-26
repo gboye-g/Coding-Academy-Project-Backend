@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +18,4 @@ public class Request extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "tripId")
     private Trip trip;
-
-    private BigDecimal price;
 }

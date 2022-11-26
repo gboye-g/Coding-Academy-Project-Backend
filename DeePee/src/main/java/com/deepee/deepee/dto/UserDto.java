@@ -1,14 +1,15 @@
 package com.deepee.deepee.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class UserDto {
     private Long id;
-
-    private String userName;
-
-    private String password;
 
     private String firstName;
 
@@ -18,27 +19,36 @@ public class UserDto {
 
     private String mobile;
 
+    private String doB;
+
+    private String ISWid;
+
+    private String password;
+
     private String driverLicense;
 
     private String plateNumber;
 
-    public UserDto(String userName, String password, String firstName, String lastName, String email, String mobile) {
-        this.userName = userName;
-        this.password = password;
+    public UserDto(String firstName, String lastName, String email, String mobile, String doB, String ISWid, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobile = mobile;
+        this.doB = doB;
+        this.ISWid = ISWid;
+        this.password = password;
     }
 
-    public UserDto(String userName, String password, String firstName, String lastName, String email, String mobile, String driverLicense, String plateNumber) {
-        this.userName = userName;
-        this.password = password;
+    public UserDto(String firstName, String lastName, String email, String mobile, String doB, String ISWid, String password, String driverLicense, String plateNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobile = mobile;
+        this.doB = doB;
+        this.ISWid = ISWid;
+        this.password = password;
         this.driverLicense = driverLicense;
         this.plateNumber = plateNumber;
     }
+
 }

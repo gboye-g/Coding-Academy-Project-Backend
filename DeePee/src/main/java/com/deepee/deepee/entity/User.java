@@ -1,17 +1,18 @@
 package com.deepee.deepee.entity;
 
 import com.deepee.deepee.entity.enums.RoleType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {
+
 
     @Column(name = "first_name")
     private String firstName;
@@ -23,14 +24,12 @@ public class User extends BaseEntity {
 
     private String mobile;
 
-    private String DoB;
+    private String doB;
 
     @Column(name = "ISW_id")
     private String ISWid;
 
     private String password;
-
-    private String passwordh;
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
