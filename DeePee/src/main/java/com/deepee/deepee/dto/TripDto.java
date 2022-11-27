@@ -2,6 +2,11 @@ package com.deepee.deepee.dto;
 
 import com.deepee.deepee.entity.enums.Locations;
 import com.deepee.deepee.entity.enums.NoOfSeats;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,21 +16,21 @@ import java.time.LocalDateTime;
 
 @Data
 public class TripDto {
+
     private Long id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startTime;
 
-    @Enumerated(EnumType.STRING)
-    private Locations sourceLocations;
+    private String sourceLocations;
 
-    @Enumerated(EnumType.STRING)
-    private Locations destinationLocations;
+    private String destinationLocations;
 
-    @Enumerated(EnumType.STRING)
-    private NoOfSeats noOfSeats;
+    private String noOfSeats;
 
-    public TripDto(LocalDateTime startTime, Locations sourceLocations, Locations destinationLocations, NoOfSeats noOfSeats) {
+    public TripDto(LocalDateTime startTime, String sourceLocations, String destinationLocations, String noOfSeats) {
         this.startTime = startTime;
         this.sourceLocations = sourceLocations;
         this.destinationLocations = destinationLocations;

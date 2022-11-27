@@ -1,25 +1,20 @@
 package com.deepee.deepee.service;
 
+import com.deepee.deepee.dto.TripDto;
 import com.deepee.deepee.entity.Trip;
+import com.deepee.deepee.entity.enums.Locations;
 
 import java.util.List;
 
 public interface TripService {
 
-    void createNewTrip();
+    String createNewTrip(Long id, TripDto tripDto);
 
-    void updateTrip();
+    List<Trip> searchForTrip(Locations s, Locations d);
 
-    void updateTripStatus();
+    Trip getTripById(Long id);
 
-    void deleteTripById();
 
-    Trip getTripById();
-
-    List<Trip> getAllTrips();
-
-    List<Trip> getAllTripsByHostId();
-
-    List<Trip> getAllTripsByStatus();
+    List<Trip> getAllTripsByHostId(Long id);
 
 }
