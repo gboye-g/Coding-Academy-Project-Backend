@@ -1,11 +1,8 @@
 package com.deepee.deepee.controller;
 
 import com.deepee.deepee.dto.LoginDto;
-import com.deepee.deepee.dto.TripDto;
 import com.deepee.deepee.dto.UserDto;
 import com.deepee.deepee.entity.Customer;
-import com.deepee.deepee.entity.Host;
-import com.deepee.deepee.entity.Request;
 import com.deepee.deepee.entity.Trip;
 import com.deepee.deepee.entity.enums.Locations;
 import com.deepee.deepee.service.RequestService;
@@ -37,24 +34,10 @@ public class UserController {
         return new ResponseEntity<>(userService.createCustomer(user), HttpStatus.CREATED);
     }
 
-    @PostMapping("/register-host")
-    public ResponseEntity<Host> createHost(@Valid @RequestBody UserDto user) {
-        return new ResponseEntity<>(userService.createHost(user), HttpStatus.CREATED);
-    }
 
     @PostMapping("/login")
-    public ResponseEntity<Host> loginCustomer(@RequestBody LoginDto user) {
-        return ResponseEntity.ok((Host)userService.login(user));
-    }
-
-    @PostMapping("/{uid}/trips")
-    public ResponseEntity<String> createTrip(@PathVariable(name = "uid")Long id, @RequestBody TripDto tripDto){
-        return ResponseEntity.ok(tripService.createNewTrip(id,tripDto));
-    }
-
-    @GetMapping("/{uid}/trips")
-    public ResponseEntity<List<Trip>> getAllTripsByHost(@PathVariable(name = "uid") Long id){
-        return ResponseEntity.ok(tripService.getAllTripsByHostId(id));
+    public ResponseEntity<Customer> loginCustomer(@RequestBody LoginDto user) {
+        return ResponseEntity.ok(userService.customerLogin(user));
     }
 
 
@@ -64,9 +47,9 @@ public class UserController {
         return ResponseEntity.ok(tripService.searchForTrip(Locations.valueOf(src),Locations.valueOf(dest)));
     }
 
-    @GetMapping("/{uid}/trips/{tid}/requests")
-    public ResponseEntity<List<Request>> getAllRequestsForTrip(@PathVariable(name = "tid")Long id){
-        return ResponseEntity.ok(requestService.getAllRequestForTrip(id));
-    }
 
+    @PostMapping("/{uid}/trips/{tid}/requests")
+    public ResponseEntity<String> createRequestForTrip(@PathVariable(name = "uid")Long idu,@PathVariable(name = "tid")Long idt){
+        return ResponseEntity.ok(requestService.sendRequestForTrip(idt,idu));
+    }
 }

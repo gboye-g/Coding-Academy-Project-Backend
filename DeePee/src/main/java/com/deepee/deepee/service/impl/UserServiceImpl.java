@@ -13,7 +13,6 @@ import com.deepee.deepee.repository.UserRepository;
 import com.deepee.deepee.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,26 +33,57 @@ public class UserServiceImpl implements UserService {
     @Override
     public Customer createCustomer( UserDto userDto) {
 
-        Customer customer1 = new Customer(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
-                userDto.getMobile(), userDto.getDoB(), userDto.getIswId(), userDto.getPassword(),
-                RoleType.CUSTOMER);
-        return customerRepository.save(customer1);
+        boolean userExist = userRepository.existsUserByEmail(userDto.getEmail());
+
+        if(userExist){
+            throw new UserException(HttpStatus.BAD_REQUEST,"user email already existed");
+        }else{
+            User customer1 = new Customer(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
+                    userDto.getMobile(), userDto.getDoB(), userDto.getIswId(), userDto.getPassword(),
+                    RoleType.CUSTOMER);
+            return (Customer) userRepository.save(customer1);
+        }
+
     }
 
     @Override
     public Host createHost(UserDto userDto) {
-        Host host1 = new Host( userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
+        User host1 = new Host( userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
                 userDto.getMobile(), userDto.getDoB(), userDto.getIswId(), userDto.getPassword(), RoleType.HOST,
                 userDto.getDriverLicense(), userDto.getPlateNumber());
-        return hostRepository.save(host1);
+        return (Host) userRepository.save(host1);
     }
 
     @Override
-    public User login(LoginDto loginDto) {
-         User user1 = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(()-> new UserException(HttpStatus.NOT_FOUND,"user does not exist"));
+    public Host hostLogin(LoginDto loginDto) {
+        Host user1 = hostRepository.findUserByEmail(loginDto.getEmail()).orElseThrow(()-> new UserException(HttpStatus.NOT_FOUND,"user does not exist"));
         if(!user1.getPassword().equals(loginDto.getPassword())){
             throw new UserException(HttpStatus.BAD_REQUEST,"wrong password");
         }
         return user1;
     }
+
+    @Override
+    public Customer customerLogin(LoginDto loginDto) {
+        Customer user1 = customerRepository.findUserByEmail(loginDto.getEmail()).orElseThrow(()-> new UserException(HttpStatus.NOT_FOUND,"user does not exist"));
+        if(!user1.getPassword().equals(loginDto.getPassword())){
+            throw new UserException(HttpStatus.BAD_REQUEST,"wrong password");
+        }
+        return user1;
+    }
+
+
+//    @Override
+//    public User login( LoginDto loginDto) {
+//        Optional<User> findByEmail = userRepository.findByEmail(loginDto.getEmail());
+//        System.out.println("I got here 1");
+//        if (findByEmail.get() != null) {
+//            System.out.println(findByEmail.get());
+//            System.out.println("I got here 2");
+//            return findByEmail.get();
+//        }
+//        System.out.println("I got here 3");
+//        throw new UserException("Email or password is incorrect");
+//    }
+
 }

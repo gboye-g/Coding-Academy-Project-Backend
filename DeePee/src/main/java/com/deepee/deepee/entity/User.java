@@ -9,6 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {

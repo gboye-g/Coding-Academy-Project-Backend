@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TripServiceImpl implements TripService {
@@ -28,7 +27,7 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public String createNewTrip(Long id, TripDto tripDto) {
-        Trip trip = tripRepository.findTripBySourceLocationsAndDestinationLocationsAndHost_Id(Locations.valueOf(tripDto.getSourceLocations()),Locations.valueOf(tripDto.getDestinationLocations()),id).get();
+        Trip trip = tripRepository.findTripBySourceLocationsAndDestinationLocations(Locations.valueOf(tripDto.getSourceLocations()),Locations.valueOf(tripDto.getDestinationLocations())).orElse(null);
         if(trip == null){
             createTrip(id,tripDto);
         }else{
@@ -46,6 +45,7 @@ public class TripServiceImpl implements TripService {
         Trip newTrip = new Trip();
         newTrip.setHost(hostRepository.getReferenceById(id));
         newTrip.setStartTime(tripDto.getStartTime());
+        newTrip.setSourceLocations(Locations.valueOf(tripDto.getSourceLocations()));
         newTrip.setDestinationLocations(Locations.valueOf(tripDto.getDestinationLocations()));
         newTrip.setNoOfSeats(tripDto.getNoOfSeats());
         tripRepository.save(newTrip);

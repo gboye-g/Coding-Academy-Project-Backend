@@ -2,8 +2,6 @@ package com.deepee.deepee.service.impl;
 
 import com.deepee.deepee.entity.Customer;
 import com.deepee.deepee.entity.Request;
-import com.deepee.deepee.entity.Trip;
-import com.deepee.deepee.entity.enums.Locations;
 import com.deepee.deepee.exception.UserException;
 import com.deepee.deepee.repository.RequestRepository;
 import com.deepee.deepee.repository.TripRepository;

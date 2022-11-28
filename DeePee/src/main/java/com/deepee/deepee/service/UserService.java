@@ -14,6 +14,8 @@ public interface UserService {
 
     Host createHost (UserDto userDto);
 
-    User login(LoginDto user);
+    Host hostLogin(LoginDto user);
+
+    Customer customerLogin(LoginDto user);
 
 }
