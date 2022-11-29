@@ -32,7 +32,7 @@ public class Request extends BaseEntity{
         this.customer = customer;
     }
 
-    @JsonManagedReference
+    @JsonBackReference
     public Trip getTrip() {
         return trip;
     }

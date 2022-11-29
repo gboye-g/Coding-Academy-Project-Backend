@@ -48,10 +48,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Host createHost(UserDto userDto) {
-        User host1 = new Host( userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
+
+        boolean userExist = userRepository.existsUserByEmail(userDto.getEmail());
+
+        if(userExist){
+            throw new UserException(HttpStatus.BAD_REQUEST,"user email already existed");
+        }else {
+            User host1 = new Host( userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(),
                 userDto.getMobile(), userDto.getDoB(), userDto.getIswId(), userDto.getPassword(), RoleType.HOST,
                 userDto.getDriverLicense(), userDto.getPlateNumber());
         return (Host) userRepository.save(host1);
+        }
     }
 
     @Override

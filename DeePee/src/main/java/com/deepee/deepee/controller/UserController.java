@@ -1,8 +1,10 @@
 package com.deepee.deepee.controller;
 
 import com.deepee.deepee.dto.LoginDto;
+import com.deepee.deepee.dto.TripResponse;
 import com.deepee.deepee.dto.UserDto;
 import com.deepee.deepee.entity.Customer;
+import com.deepee.deepee.entity.Host;
 import com.deepee.deepee.entity.Trip;
 import com.deepee.deepee.entity.enums.Locations;
 import com.deepee.deepee.service.RequestService;
@@ -41,9 +43,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/{uid}/trips/search")
-    public ResponseEntity<List<Trip>> searchForTrip(@RequestParam(name = "source")String src, @RequestParam(
-            name = "destination")String dest){
+    @GetMapping("/{uid}/trips/search/{src}/{dest}")
+    public ResponseEntity<List<TripResponse>> searchForTrip(@PathVariable(name = "src") String src, @PathVariable(name = "dest") String dest){
         return ResponseEntity.ok(tripService.searchForTrip(Locations.valueOf(src),Locations.valueOf(dest)));
     }
 

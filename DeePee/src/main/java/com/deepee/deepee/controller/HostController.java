@@ -51,7 +51,7 @@ public class HostController {
     }
 
     @GetMapping("/{uid}/trips")
-    public ResponseEntity<List<Trip>> getAllTripsByHost(@PathVariable(name = "uid") Long id){
+    public ResponseEntity<List<TripDto>> getAllTripsByHost(@PathVariable(name = "uid") Long id){
         return ResponseEntity.ok(tripService.getAllTripsByHostId(id));
     }
 

@@ -4,6 +4,10 @@ import com.deepee.deepee.entity.enums.Locations;
 import com.deepee.deepee.entity.enums.NoOfSeats;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,11 +30,13 @@ public class Trip extends BaseEntity {
     private List<Request> request;
 
     @ManyToOne
-    @JoinColumn(name = "id_host")
+    @JoinColumn(name = "id_host", referencedColumnName = "id")
     private Host host;
 
+//    @JsonSerialize(using = LocalDateTimeSerializer.class)
+//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @UpdateTimestamp
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime startTime;
 
     @Enumerated(EnumType.STRING)

@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 public class Host extends User {
 
-    @OneToMany(mappedBy = "host")
+    @OneToMany(mappedBy = "host", cascade = CascadeType.ALL, targetEntity = Trip.class)
     private List<Trip> trips;
 
     private String driverLicense;
